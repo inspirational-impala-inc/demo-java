@@ -2,7 +2,7 @@ name: "Maven Dependency Tree"
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "add-dependency-submission"]
   pull_request:
     branches: ["main"]
 
