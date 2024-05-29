@@ -8,19 +8,19 @@ Code scanning is a feature that you use to analyze the code in a GitHub reposito
 
 You can use code scanning with CodeQL, a semantic code analysis engine. CodeQL treats code as data, allowing you to find potential vulnerabilities in your code with greater confidence than traditional static analyzers.
 
-This tutorial with use CodeQL Analysis with Code Scanning in order to search for vulnerabilities within your code. 
+This tutorial with use CodeQL Analysis with Code Scanning in order to search for vulnerabilities within your code.
 
 ## Instructions
 
 <details>
 <summary>Create repository fork</summary>
-<p> 
-  
+<p>
+
 Begin by [creating a new repository from a fork (public)](https://docs.github.com/en/get-started/quickstart/fork-a-repo) or [cloning the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
 <img src="images/00-repo-fork.png" width="70%"/>
 
-Where creating the forked repository, make sure to 
+Where creating the forked repository, make sure to:
 
 1. Select the correct org / user account
 2. Create a name for your new repository
@@ -32,12 +32,11 @@ Where creating the forked repository, make sure to
 
 <details>
 <summary>Enable Code Scanning</summary>
-<p> 
+<p>
 
 #### Security tab
 
 Click on the `Security` tab.
-
 
 <img src="images/00-repo-security-tab.png" width="70%"/>
 
@@ -54,17 +53,19 @@ Click the `Setup this workflow` button by CodeQL Analysis.
 <img src="images/02-repo-security-setup-codeql-workflow.png" width="70%"/>
 
 This will create a GitHub Actions Workflow file with CodeQL already set up. Since Java is a compiled language you will need to setup the build in later steps. See the [documentation](https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/running-codeql-code-scanning-in-your-ci-system) if you would like to configure CodeQL Analysis with a 3rd party CI system instead of using GitHub Actions.
+
 </p>
 </details>
 
 <details>
-  
+
 <summary>Actions Workflow file</summary>
 <p>
 
 #### Actions Workflow
 
 The Actions Workflow file contains a number of different sections including:
+
 1. Checking out the repository
 2. Initializing the CodeQL Action
 3. Running Autobuilder (or code your own build steps if autobuild doesn't work)
@@ -73,11 +74,12 @@ The Actions Workflow file contains a number of different sections including:
 <img src="images/03-actions-sample-workflow.png" width="80%"/>
 
 Click `Start Commit` -> `Commit this file` to commit the changes to _main_ branch.
+
 </p>
 </details>
 
 <details>
-  
+
 <summary>Workflow triggers</summary>
 <p>
 
@@ -96,12 +98,11 @@ Setting up the new CodeQL workflow and committing it to _main_ branch in the ste
 </p>
 </details>
 
-
 <details>
 <summary>GitHub Actions Progress</summary>
 
 <p>
- 
+
 #### GitHub Actions Progress
 
 Click `Actions` tab -> `CodeQL`
@@ -116,12 +117,13 @@ Click the specific workflow run. You can view the progress of the Workflow run u
 <details>
 <summary>Security Issues</summary>
 <p>
-  
+
 Once the Workflow has completed, click the `Security` tab -> ` Code Scanning Alerts`. An security alert "Query built from user-controlled sources" should be visible.
 
 #### Security Alert View
 
 Clicking on the security alert will provide details about the security alert including: <br/>
+
 <ul>
 <li>A description of the issue </li>
 <li>A tag to the CWE that it is connected to as well as the type of alert (Error, Warning, Note)</li>
@@ -163,8 +165,8 @@ Click `show paths` in order to see the dataflow path that resulted in this alert
 </details>
 
 <details>
-<p>  
-  
+<p>
+
 <summary>Fix the Security Alert</summary>
 
 In order to fix this specific alert, we will need to ensure parameters used in the SQL query is validated and sanitized.
@@ -183,7 +185,7 @@ In the Pull Request, you will notice that the CodeQL Analysis has started as a s
 
 #### Security Alert Details
 
-After the Workflow has completed click on `Details` by the `Code Scanning Results / CodeQL` status check. 
+After the Workflow has completed click on `Details` by the `Code Scanning Results / CodeQL` status check.
 
 <img src="images/13-fix-pr-done.png" width="80%"/>
 
@@ -193,7 +195,7 @@ Notice that Code Scanning has detected that this Pull Request will fix the SQL i
 
 <img src="images/14-fix-detail.png" width="80%"/>
 
-Merge the Pull Request. After the Pull Request has been merged, another Workflow will kick off to scan the repository for any vulnerabilties. 
+Merge the Pull Request. After the Pull Request has been merged, another Workflow will kick off to scan the repository for any vulnerabilties.
 
 #### Closed Security Alerts
 
@@ -224,7 +226,6 @@ Create a new Pull Request with the base branch as your `main` branch and the com
 
 Make sure that the base branch is set to your own repositories `main` branch versus the original repository's `main` branch.
 
-
 #### Pull Request Status Check
 
 Once the Pull Request has been created, you will notice that the CodeQL Analysis has started as a status check. Wait until it completes.
@@ -234,14 +235,12 @@ Notice that Code Scanning has detected that this Pull Request introduces a new s
 
 <img src="images/18-pr-check-failed.png" width="80%"/>
 
-
 #### Alert Centric Notifications
 
 Directly in the Pull Request, you will notice that GitHub Code Scanning bot has left a review of the Pull Request with the security alert details.
 This will help developers to quickly identify security issues introduced in their Pull Requests.
 
 <img src="images/19-pr-review.png" width="80%"/>
-
 
 This also allows for collaboration between developers and security teams to discuss the security alert and how to remediate it.
 
@@ -255,10 +254,8 @@ Click on `Show more details` by the new `Code Scanning Alert` to jump to the `Se
 
 Notice that the security alert was found `In pull request` and not in the `main` branch (production).
 
-
 </p>
 </details>
-
 
 ## Next Steps
 
